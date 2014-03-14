@@ -1,0 +1,89 @@
+<div class="header section">
+    <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#">About</a></li>
+        <li><a ng-href="#">Contact</a></li>
+    </ul>
+    <h3 class="text-muted">angular</h3>
+</div>
+
+<h1 class = "section">The ng-book</h1>
+
+<div class = "section" ng-controller = "MainClock">
+
+    <h2>Modules</h2>
+
+    <h1>{{ clock.now }}</h1>
+    <ul>
+        <li ng-repeat = "thing in awesomeThings">
+            {{ $index + 1 }} {{ thing }}
+        </li>
+    </ul>
+</div>
+
+<div class = "section" ng-controller = "MainCalc">
+
+    <h2>Scopes</h2>
+
+    <p>Adding Machine</p>
+
+    <button ng-click = "add(1)" class = "button">Add</button>
+    <button ng-click = "sub(1)" class = "button">Subtract</button>
+    <h4>Current Count: {{ counter }} </h4>
+    <h4>{{ person }}</h4>
+</div>
+
+
+<div class = "section" ng-controller = "MainParent">
+    <h2>Controllers</h2>
+    <div ng-controller = "MainChild">
+        <a ng-click = "sayHello()">Say Hello</a>
+    </div>
+
+    {{ person }}
+</div>
+
+<div class = "section" ng-controller = "MainParser">
+    <h2>Expressions</h2>
+    <input ng-model = "expr" type = "text" placeholder = "Enter an expression" />
+    <h2>{{ parsedVal | currency}} </h2>
+</div>
+
+<div class =  "section" ng-controller = "MainClock">
+    <h2>Filters</h2>
+    <h1> {{ clock.now | date: "MMMM d, yyyy (HH:mm:ss a)"}}</h1>
+    <h2>{{ "GINGER LOVES DOGS " | lowercase | capitalize }}</h2>
+
+    <form name = "signup_form" novalidate ng-submit = "signupForm()" ng-controller = "signupController">
+        <fieldset>
+            <legend>Signup</legend>
+
+            <div class = "row">
+                <div class = "large-12 columns">
+                    <label>Your name:</label>
+                    <input type = "text" placeholder = "Name" name = "name" ng-model = "signup.name" ng-minlength = 3 ng-maxlength = 30
+                           ng-class = "{error : signup_form.name.$dirty && signup_form.name.$invalid }" required />
+                    <div class = "error" ngshow "signup_form.name.$dirty && signup_form.name.$invalid && !signup_form.name.$focused">
+                    <small class = "error" ng-show = "signup_form.name.$error.required">Your name is required</small>
+                    <small class = "error" ng-show = "signup_form.name.$error.minlength">Your name requires at least 3 characters</small>
+                    <small class = "error" ng-show = "signup_form.name$error.maxlength">Your name is longer than 30 characters</small>
+                </div>
+            </div>
+
+
+            <div class = "row">
+                <div class = "large-12 columns">
+                    <label>Your email:</label>
+                    <input type = "text" placeholder = "Email" name = "email" ng-model = "signup.email" ng-minlength = 3
+                           ng-maxlength = 30 ng-class = "{error : signup_form.email.$dirty && signup_form.email.$invalid" required />
+                    <div class = "error" ng-show = "signup_form.email.$dirty && signup_form.email.$invalid && signup_form.submited">
+                        <small class="error" ng-show="signup_form.email.$error.requred">Your email is required</small>
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
